@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreteCalc Pro - Calculadora de Frete Profissional</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shipping-fast"></i>
+                <h1>FreteCalc Pro</h1>
+            </div>
+            <p class="subtitle">Calculadora de frete profissional com integração em tempo real via API ViaCEP</p>
+        </header>
+
+        <main class="main-content">
+            <div class="calculator-card">
+                <div class="card-header">
+                    <i class="fas fa-calculator"></i>
+                    <h2>Calcular Frete</h2>
+                </div>
+
+                <form action="calcular.php" method="POST" class="form" id="freteForm">
+                    <div class="input-group">
+                        <label for="cep" class="label">
+                            <i class="fas fa-location-dot"></i>
+                            CEP de Destino
+                        </label>
+                        <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" required
+                            class="input" pattern="[0-9]{5}-?[0-9]{3}" title="Digite um CEP válido (formato: 00000-000)"
+                            autocomplete="postal-code">
+                        <small class="input-help">Digite o CEP no formato 00000-000 para consulta em tempo real</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="peso" class="label">
+                            <i class="fas fa-weight-hanging"></i>
+                            Peso do Produto (kg)
+                        </label>
+                        <input type="number" id="peso" name="peso" placeholder="1.0" min="0.1" max="30" step="0.1"
+                            value="1.0" required class="input" autocomplete="off">
+                        <small class="input-help">Peso entre 0,1kg e 30kg - valores maiores têm taxa adicional</small>
+                    </div>
+
+                    <button type="submit" class="btn-calculate" id="btnCalcular">
+                        <i class="fas fa-calculator"></i>
+                        <span>Calcular Frete</span>
+                        <div class="btn-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Cálculo Instantâneo</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Dados Seguros</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Todo o Brasil</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-cloud"></i>
+                        <span>API ViaCEP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>Como Funciona Nossa Calculadora</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Digite o CEP</h4>
+                            <p>Informe o CEP de destino da entrega. Nossa integração com a API ViaCEP garante dados
+                                atualizados e precisos em tempo real.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Informe o Peso</h4>
+                            <p>Digite o peso do produto em quilogramas. Nosso algoritmo considera faixas de peso para
+                                cálculo mais preciso.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Receba o Resultado</h4>
+                            <p>Veja o valor do frete calculado com base na distância real, peso do produto e região de
+                                destino, com prazo estimado de entrega.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 FreteCalc Pro - Calculadora de Frete Profissional com Tecnologia Avançada</p>
+        </footer>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
