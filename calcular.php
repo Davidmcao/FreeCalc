@@ -1,8 +1,6 @@
 <?php
 /**
- * Calculadora de Frete por CEP - VERSÃO FINAL REALISTA
  * Processa o formulário e calcula o valor do frete usando API ViaCEP
- * Com lógica de cálculo realista e profissional
  */
 
 // Configurações
@@ -160,7 +158,7 @@ function buscarDadosCEPLocal($cep) {
         }
     }
     
-    // Se não encontrar, tenta buscar por região (primeiros 2 dígitos)
+    // Se não encontrar, tenta buscar por região 
     $regiao_cep = substr($cep_limpo, 0, 2);
     foreach ($dados_ceps as $cep_base => $dados) {
         if (substr($cep_base, 0, 2) === $regiao_cep) {
@@ -209,15 +207,15 @@ function carregarDadosCEPs() {
     ];
 }
 
-// Função para calcular frete - LÓGICA FINAL REALISTA
+// Função para calcular frete 
 function calcularFrete($distancia, $peso, $estado = '') {
-    // Configurações de cálculo REALISTAS
+    // Configurações de cálculo
     $taxa_base = 12.00;           // Taxa base fixa
-    $taxa_por_kg = 3.00;          // Taxa por quilograma (realista)
+    $taxa_por_kg = 3.00;          // Taxa por quilograma 
     $taxa_minima = 18.00;         // Valor mínimo de frete
     
-    // Taxa por km progressiva MUITO MAIS BAIXA
-    $taxa_por_km = 0.025;         // Taxa base por km (reduzida drasticamente)
+    // Taxa por km progressiva 
+    $taxa_por_km = 0.025;         // Taxa base por km 
     if ($distancia > 1000) {
         $taxa_por_km = 0.020;     // Reduz para distâncias longas
     }
@@ -230,12 +228,12 @@ function calcularFrete($distancia, $peso, $estado = '') {
     $valor_peso = $peso * $taxa_por_kg;
     $valor_total = $taxa_base + $valor_distancia + $valor_peso;
     
-    // Aplica desconto para distâncias curtas (mesma região metropolitana)
+    // Aplica desconto para distâncias curtas 
     if ($distancia < 100) {
         $valor_total *= 0.85; // 15% de desconto
     }
     
-    // Taxa MODERADA para regiões Norte e Nordeste (mais realista)
+    // Taxa MODERADA para regiões Norte e Nordeste 
     $estados_taxa_adicional = ['AM', 'AC', 'RR', 'PA', 'AP', 'TO', 'MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA'];
     if (in_array($estado, $estados_taxa_adicional)) {
         $valor_total *= 1.05; // Apenas 5% adicional (era 8%)
@@ -261,7 +259,7 @@ function calcularFrete($distancia, $peso, $estado = '') {
     return round($valor_total, 2);
 }
 
-// Função para calcular prazo de entrega - REALISTA
+// Função para calcular prazo de entrega
 function calcularPrazo($distancia, $estado = '') {
     $prazo_base = 0;
     
